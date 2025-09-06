@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM node:22-slim AS base
 ENV HTTP_PROXY=http://192.168.1.4:7890
 ENV HTTPS_PROXY=http://192.168.1.4:7890
@@ -69,6 +68,9 @@ WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/native ./native
+COPY --from=build /app/package.json ./package.json
+COPY --from=build /app/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=build /app/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
 # Copy Go shared library
 COPY --from=go-build /app/sharedLibs/go-html-to-md/libhtml-to-markdown.so ./sharedLibs/go-html-to-md/
