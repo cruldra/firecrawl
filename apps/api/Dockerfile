@@ -4,6 +4,8 @@ FROM node:22-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
+ENV HTTP_PROXY=http://192.168.1.4:7890
+ENV HTTPS_PROXY=http://192.168.1.4:7890
 
 RUN corepack enable
 
