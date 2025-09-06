@@ -4,13 +4,13 @@ FROM node:22-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV CI=true
-ENV HTTP_PROXY=http://192.168.1.4:7890
-ENV HTTPS_PROXY=http://192.168.1.4:7890
 
 RUN corepack enable
 
 # Build Go shared library
 FROM golang:1.24 AS go-build
+ENV HTTP_PROXY=http://192.168.1.4:7890
+ENV HTTPS_PROXY=http://192.168.1.4:7890
 WORKDIR /app
 COPY sharedLibs/go-html-to-md ./sharedLibs/go-html-to-md
 
