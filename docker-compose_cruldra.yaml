@@ -5,8 +5,8 @@ x-common-service: &common-service
   # comment out the build: statement and uncomment the image: statement
   # image: ghcr.io/firecrawl/firecrawl
   build:
-    context: .
-    dockerfile: apps/api/Dockerfile_cruldra
+    context: ./apps/api
+    dockerfile: Dockerfile_cruldra
 
   ulimits:
     nofile:
